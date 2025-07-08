@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password - toggle</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="input-box">
+    <input class="password" type="password" placeholder="Password">
+    <img class="eye-icon" src="./eye-close.png" alt="close">
+  </div>
+  <script>
+    let eyeIcon = document.querySelector('.eye-icon');
+    let password = document.querySelector('.password');
+
+    eyeIcon.addEventListener('click', (e) => {
+      let icon = e.target;
+
+      if (password.type === 'password') {
+        password.type = 'text';
+        icon.src = './eye-open.png';
+      } else {
+
+        icon.src = './eye-close.png';
+        password.type = 'password';
+      }
+    });
+
+  </script>
+</body>
+</html>
