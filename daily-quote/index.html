@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Quote</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="quote-box">
+      <h2>Quote of the day</h2>
+      <blockquote>Loading...</blockquote>
+      <span>Loading...</span>
+
+      <div>
+        <button class="new">New Quote</button>
+        <button onclick="tweat()"><img src="./twitter.png" alt="" />Tweet</button>
+      </div>
+    </div>
+    <!-- <script src="script.js"></script> -->
+    <script type="text/javascript">
+      const api_url = 'https://api.allorigins.win/raw?url=https://zenquotes.io/api/quotes/';
+      
+      let quotes;
+      let idx = 0;
+
+      const blockquote = document.querySelector('blockquote');
+      const author = document.querySelector('span');
+
+      async function getapi(url) {
+        const response = await fetch(url);
+        quotes = await response.json();
+        console.log(quotes);
+
+
+        blockquote.innerHTML = quotes[0].q;
+        author.innerHTML = quotes[0].a;
+      }
+
+      getapi(api_url);
+
+      const newQuote = document.querySelector('.new');
+      newQuote.onclick = () => {
+        idx++;
+        idx = idx > 49 ? idx - 50 : idx;
+        
+        blockquote.innerHTML = quotes[idx].q;
+        author.innerHTML = quotes[idx].a;
+        
+      }
+
+      function tweat() {
+        window.open('https://twitter.com/intent/tweet?text=' + blockquote.innerHTML + '----- by ' + author.innerHTML, 'tweet window', 'width=600, height=300');
+      }
+
+    </script>
+  </body>
+</html>
