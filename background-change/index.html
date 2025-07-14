@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>background-change</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="img-box">
+            <img src="./images/transparent.png" alt="" width="100%">
+
+            <div class="img-wrap">
+                <img src="./images/original.jpg" alt="" class="original-img">
+            </div>
+            <span class="line"><img src="./images/arrow.png" alt="" class="arrow"></span>
+        </div>
+    </div>
+
+    <script>
+        const imgWrap = document.querySelector('.img-wrap');
+        const imgBox = document.querySelector('.img-box');
+        let line = document.querySelector('.line');
+
+        let originalImg = document.querySelector('.original-img');
+
+        originalImg.style.width = imgBox.offsetWidth + 'px';
+
+
+        let leftSpace = imgBox.offsetLeft;
+
+        imgBox.addEventListener('mousemove', (e) => {
+            boxWidth = (e.pageX - leftSpace) + 'px';
+            imgWrap.style.width = boxWidth;
+            line.style.left = boxWidth;
+        })
+    </script>
+</body>
+</html>
